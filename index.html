@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Escuela de Educación Técnica N.° 2 'Dr. Horacio Guzmán' (San Pedro de Jujuy) - Taller: Emprendimiento Digital: Creación y Despliegue de Tienda Virtual para Productos 3D." />
+  <title>E.E.T. N.° 2 "Dr. Horacio Guzmán" | Taller: Emprendimiento Digital - Universo 3D</title>
+  <link rel="icon" type="image/svg+xml" href="/img/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,400;0,600;0,800;1,400&family=Oxanium:wght@500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="hub-body">
+
+  <!-- Header Navigation -->
+  <header class="header" id="header">
+    <div class="container nav">
+      <a href="#inicio" class="brand">
+        <img src="/img/logo.svg" alt="Universo 3D Logo" class="brand-logo" width="34" height="34" />
+        <span>Universo <span class="gradient-text">3D</span> <span class="brand-hub-tag">Clases</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <!-- Enlaces internos ocultos según solicitud (secciones conservadas en la página) -->
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://universo3-owp7mu18p-juan-ad7a.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-live-store" title="Abrir la tienda en vivo en Vercel">
+          <span class="live-dot"></span>
+          <span>Ver Tienda en Vivo</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+
+        <!-- Botón Menú Hamburguesa para las 3 Clases -->
+        <button class="hamburger-btn" id="classesMenuToggle" aria-label="Abrir menú de las 3 clases" aria-expanded="false" title="Ver las 3 Clases">
+          <span class="hamburger-icon-lines" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span class="hamburger-btn-text">Clases</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menú Hamburguesa Desplegable (Drawer de las 3 Clases) -->
+  <div class="classes-drawer-backdrop" id="classesDrawerBackdrop"></div>
+  <aside class="classes-drawer" id="classesDrawer" aria-label="Menú de Clases del Taller">
+    <div class="drawer-header">
+      <div class="drawer-header-info">
+        <span class="drawer-tag">E.E.T. N.° 2 “Dr. Horacio Guzmán”</span>
+        <h3 class="drawer-title">Las 3 Clases Prácticas</h3>
+        <p class="drawer-sub">Taller: "Emprendimiento Digital: Tienda Virtual para Productos 3D"</p>
+      </div>
+      <button class="drawer-close-btn" id="classesDrawerClose" aria-label="Cerrar menú">✕</button>
+    </div>
+
+    <div class="drawer-classes-list">
+      <!-- Botón Clase 1 -->
+      <a href="/clase1.html" class="drawer-class-btn class-1-theme">
+        <div class="drawer-class-badge-row">
+          <span class="drawer-class-num">CLASE 01</span>
+          <span class="drawer-status-pill">● Disponible</span>
+        </div>
+        <div class="drawer-class-content">
+          <div class="drawer-class-icon blue">☁️</div>
+          <div class="drawer-class-texts">
+            <strong>Arquitectura & Supabase Cloud</strong>
+            <span>Bases de datos relacionales (PostgreSQL), modelo cliente-servidor y TP N.° 1</span>
+          </div>
+          <span class="drawer-arrow">➔</span>
+        </div>
+      </a>
+
+      <!-- Botón Clase 2 -->
+      <a href="/clase2.html" class="drawer-class-btn class-2-theme">
+        <div class="drawer-class-badge-row">
+          <span class="drawer-class-num">CLASE 02</span>
+          <span class="drawer-status-pill purple">● Disponible</span>
+        </div>
+        <div class="drawer-class-content">
+          <div class="drawer-class-icon purple">✨</div>
+          <div class="drawer-class-texts">
+            <strong>Frontend con IA & WhatsApp</strong>
+            <span>Google AI Studio + React/Vite, Prompt Maestro, catálogo en vivo y TP N.° 2</span>
+          </div>
+          <span class="drawer-arrow">➔</span>
+        </div>
+      </a>
+
+      <!-- Botón Clase 3 -->
+      <a href="/clase3.html" class="drawer-class-btn class-3-theme">
+        <div class="drawer-class-badge-row">
+          <span class="drawer-class-num">CLASE 03</span>
+          <span class="drawer-status-pill cyan">● Disponible</span>
+        </div>
+        <div class="drawer-class-content">
+          <div class="drawer-class-icon cyan">🚀</div>
+          <div class="drawer-class-texts">
+            <strong>Despliegue Cloud & Marketing Digital</strong>
+            <span>GitHub + Vercel, copys con ChatGPT y Flyer con Código QR para la ExpoTécnica</span>
+          </div>
+          <span class="drawer-arrow">➔</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="drawer-footer">
+      <a href="https://universo3-owp7mu18p-juan-ad7a.vercel.app/" target="_blank" rel="noopener noreferrer" class="drawer-live-btn" title="Abrir tienda en producción">
+        <span class="live-dot pulse"></span>
+        <span>Ver Tienda en Producción (Vercel) ↗</span>
+      </a>
+      <p class="drawer-hint">⌨️ Presiona <kbd>ESC</kbd> o haz clic afuera para cerrar</p>
+    </div>
+  </aside>
+
+  <!-- Hero Section (Centrado en Pantalla Completa) -->
+  <section class="hub-hero" id="inicio">
+    <div class="container hub-hero-centered">
+      <div class="hub-pill-badge">
+        <span class="sparkle">🏛️</span>
+        <span>E.E.T. N.° 2 “Dr. Horacio Guzmán” · San Pedro de Jujuy</span>
+      </div>
+
+      <div class="workshop-title-block">
+        <p class="workshop-kicker-label">Denominación del Taller:</p>
+        <h1 class="workshop-main-title">
+          "Emprendimiento Digital: Creación y Despliegue de Tienda Virtual para Productos 3D"
+        </h1>
+        <p class="workshop-project-tag">
+          Proyecto Práctico Integrador: <span class="gradient-text">"Universo 3D E-Commerce"</span>
+        </p>
+      </div>
+
+      <!-- Información Docente y Espacio Curricular -->
+      <div class="hero-curriculum-badge">
+        <div class="curriculum-item">
+          <span class="curriculum-icon">👨‍🏫</span>
+          <div class="curriculum-text">
+            <span class="curriculum-label">Docente</span>
+            <strong class="curriculum-value">Prof. Residente Juan Ezequiel Hinojosa</strong>
+          </div>
+        </div>
+        <span class="curriculum-sep">✦</span>
+        <div class="curriculum-item">
+          <span class="curriculum-icon">📚</span>
+          <div class="curriculum-text">
+            <span class="curriculum-label">Espacio Curricular</span>
+            <strong class="curriculum-value">Prácticas Profesionalizantes II</strong>
+          </div>
+        </div>
+      </div>
+
+      <p class="hub-hero-sub">
+        Capacitación técnica estructurada en <strong>3 clases prácticas</strong> dictada para la <strong>Escuela de Educación Técnica N.° 2 “Dr. Horacio Guzmán” (San Pedro de Jujuy)</strong>:
+        desde la arquitectura del sistema y base de datos relacional en <strong>Supabase (PostgreSQL)</strong>,
+        hasta el frontend interactivo, el checkout automatizado por <strong>WhatsApp</strong> y el despliegue global en <strong>Vercel</strong>.
+      </p>
+
+      <div class="hub-hero-actions">
+        <a href="/clase1.html" class="btn btn-primary btn-hero-main" title="Abrir presentación interactiva de la Clase 1">
+          <span>🎓 Iniciar Clase 1 (Diapositivas)</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <a href="https://universo3-owp7mu18p-juan-ad7a.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-hero-live" title="Ver la tienda en producción en Vercel">
+          <span class="live-dot pulse"></span>
+          <span>Ver Tienda en Vivo (Vercel)</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+
+      <div class="hub-metrics-grid">
+        <div class="hub-metric">
+          <strong>EET N.° 2</strong>
+          <span>San Pedro de Jujuy</span>
+        </div>
+        <div class="hub-metric">
+          <strong>3</strong>
+          <span>Clases Prácticas</span>
+        </div>
+        <div class="hub-metric">
+          <strong>100%</strong>
+          <span>Cloud (Supabase)</span>
+        </div>
+        <div class="hub-metric">
+          <strong>WhatsApp</strong>
+          <span>Cierre de Ventas</span>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card (Centrado) -->
+      <div class="hub-hero-visual-centered">
+        <div class="showcase-terminal-card">
+          <div class="terminal-bar">
+            <div class="terminal-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="terminal-title">taller-eet2.config.ts</span>
+            <span class="terminal-badge">SAN PEDRO · JUJUY</span>
+          </div>
+          <div class="terminal-body">
+            <div class="code-line"><span class="c-keyword">const</span> <span class="c-var">capacitacion</span> = {</div>
+            <div class="code-line indent"><span class="c-prop">institucion</span>: <span class="c-str">"E.E.T. N.° 2 'Dr. Horacio Guzmán'"</span>,</div>
+            <div class="code-line indent"><span class="c-prop">ciudad</span>: <span class="c-str">"San Pedro de Jujuy"</span>,</div>
+            <div class="code-line indent"><span class="c-prop">docente</span>: <span class="c-str">"Prof. Residente Juan Ezequiel Hinojosa"</span>,</div>
+            <div class="code-line indent"><span class="c-prop">espacioCurricular</span>: <span class="c-str">"Prácticas Profesionalizantes II"</span>,</div>
+            <div class="code-line indent"><span class="c-prop">taller</span>: <span class="c-str">"Emprendimiento Digital: Creación y Despliegue de Tienda Virtual para Productos 3D"</span>,</div>
+            <div class="code-line indent"><span class="c-prop">proyecto</span>: <span class="c-str">"Universo 3D E-Commerce"</span>,</div>
+            <div class="code-line indent"><span class="c-prop">hosting</span>: <span class="c-str">"<a href="https://universo3-owp7mu18p-juan-ad7a.vercel.app/" target="_blank" rel="noopener noreferrer" class="code-link">vercel.app (En Producción) ↗</a>"</span>,</div>
+            <div class="code-line indent"><span class="c-prop">baseDeDatos</span>: <span class="c-str">"PostgreSQL en Supabase Cloud"</span>,</div>
+            <div class="code-line indent"><span class="c-prop">clasesDisponibles</span>: <span class="c-num">3</span> <span class="c-comment">// Clases 1, 2 y 3 listas</span></div>
+            <div class="code-line">};</div>
+          </div>
+          <div class="terminal-foot">
+            <a href="/clase1.html" class="btn btn-small btn-accent">
+              ▶ Proyectar Clase 1
+            </a>
+            <a href="https://universo3-owp7mu18p-juan-ad7a.vercel.app/" target="_blank" rel="noopener noreferrer" class="terminal-link">
+              Visitar tienda Vercel ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: The 3 Classes Roadmap -->
+  <section class="hub-classes-section" id="clases">
+    <div class="container">
+      <div class="section-head text-center">
+        <p class="section-tag">Ruta Formativa</p>
+        <h2>Las 3 Clases del Proyecto</h2>
+        <p>Un recorrido paso a paso para transformar una idea en una solución web completa con base de datos en la nube.</p>
+      </div>
+
+      <div class="classes-grid">
+
+        <!-- CLASE 1: Activa -->
+        <article class="class-card active-card">
+          <div class="class-badge-row">
+            <span class="class-number">CLASE 01</span>
+            <span class="class-status-badge available">● LISTA PARA ENSEÑAR</span>
+          </div>
+
+          <div class="class-icon-header">
+            <div class="class-icon-box emerald">☁️</div>
+            <div>
+              <h3>Arquitectura & Backend Cloud</h3>
+              <p class="class-subtitle">Bases de datos, modelo cliente-servidor y Supabase</p>
+            </div>
+          </div>
+
+          <p class="class-desc">
+            Vista panorámica del sistema completo. Comprendemos por qué separamos la interfaz del almacenamiento,
+            configuramos nuestra base de datos relacional PostgreSQL en Supabase y realizamos el TP N.° 1 en vivo.
+          </p>
+
+          <div class="class-topics">
+            <h4>Temas cubiertos en las diapositivas:</h4>
+            <ul>
+              <li><strong>Diapositiva 1:</strong> Arquitectura global de "Universo 3D" (3 capas).</li>
+              <li><strong>Diapositiva 2:</strong> Modelo Cliente-Servidor (Analogía de la cocina).</li>
+              <li><strong>Diapositiva 3:</strong> Base de Datos Relacional (Tablas, filas y tipos).</li>
+              <li><strong>Diapositiva 4:</strong> API REST (El mozo y los métodos HTTP).</li>
+              <li><strong>Diapositiva 5:</strong> ¿Por qué Supabase? (PostgreSQL + Table Editor).</li>
+              <li><strong>Diapositiva 6:</strong> ¡Manos a la Obra! (Consigna del TP N.° 1 paso a paso).</li>
+            </ul>
+          </div>
+
+          <div class="class-footer">
+            <a href="/clase1.html" class="btn btn-primary btn-full">
+              <span>🎓 Abrir Diapositivas Clase 1</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <div class="class-teacher-tools">
+              <span>🎙️ Incluye Guía del Docente, Preguntas Disparadoras y Modo Proyector</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- CLASE 2: Lista y Disponible -->
+        <article class="class-card active-card">
+          <div class="class-badge-row">
+            <span class="class-number">CLASE 02</span>
+            <span class="class-status-badge available">● LISTA PARA ENSEÑAR</span>
+          </div>
+
+          <div class="class-icon-header">
+            <div class="class-icon-box purple">✨</div>
+            <div>
+              <h3>Frontend Asistido con IA & Integración Comercial</h3>
+              <p class="class-subtitle">React + Vite + Tailwind CSS + WhatsApp</p>
+            </div>
+          </div>
+
+          <p class="class-desc">
+            Pasamos de la base de datos en la nube a lo que ve y toca el usuario. Construimos la SPA en pocas horas
+            usando Inteligencia Artificial Generativa (Google AI Studio), consumimos el catálogo en tiempo real
+            y cerramos ventas directas por WhatsApp sin comisiones intermedias.
+          </p>
+
+          <div class="class-topics">
+            <h4>Temas cubiertos en las 5 diapositivas:</h4>
+            <ul>
+              <li><strong>Diapositiva 1:</strong> Portada y El Desafío del Frontend (IA Generativa + React/Vite).</li>
+              <li><strong>Diapositiva 2:</strong> Desarrollo Asistido por IA (Prompt Engineering estructurado).</li>
+              <li><strong>Diapositiva 3:</strong> Consumo de la API y Estado Local (El Catálogo y localStorage).</li>
+              <li><strong>Diapositiva 4:</strong> Cierre de Venta Directo por WhatsApp (Enlace wa.me sin comisiones).</li>
+              <li><strong>Diapositiva 5:</strong> ¡Manos a la Obra! (Consigna del TP N.° 2 paso a paso).</li>
+            </ul>
+          </div>
+
+          <div class="class-footer">
+            <a href="/clase2.html" class="btn btn-primary btn-full" style="background: linear-gradient(135deg, #9d5cff, #7928ca); border-color: rgba(157, 92, 255, 0.5);">
+              <span>🎓 Abrir Diapositivas Clase 2</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <div class="class-teacher-tools">
+              <span>🎙️ Incluye Prompt Maestro, Pregunta Disparadora y Guía del Docente</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- CLASE 3: Lista y Disponible -->
+        <article class="class-card active-card">
+          <div class="class-badge-row">
+            <span class="class-number">CLASE 03</span>
+            <span class="class-status-badge available">● LISTA PARA ENSEÑAR</span>
+          </div>
+
+          <div class="class-icon-header">
+            <div class="class-icon-box" style="background: rgba(6, 182, 212, 0.12); border-color: rgba(6, 182, 212, 0.35); color: #06b6d4;">🚀</div>
+            <div>
+              <h3>Despliegue Cloud & Marketing Digital</h3>
+              <p class="class-subtitle">GitHub + Vercel + ChatGPT + Flyer & Código QR para la ExpoTécnica</p>
+            </div>
+          </div>
+
+          <p class="class-desc">
+            De la computadora local al mundo real y al estand escolar. Publicamos la tienda en la nube global con Vercel,
+            generamos la identidad comercial y slogans con ChatGPT, e imprimimos el flyer con código QR para que los
+            visitantes de la ExpoTécnica compren directo desde su celular.
+          </p>
+
+          <div class="class-topics">
+            <h4>Temas cubiertos en las 5 diapositivas:</h4>
+            <ul>
+              <li><strong>Diapositiva 1:</strong> Portada y El Objetivo Final (De localhost a la ExpoTécnica).</li>
+              <li><strong>Diapositiva 2:</strong> Control de Versiones y Hosting Cloud (GitHub + Vercel CI/CD).</li>
+              <li><strong>Diapositiva 3:</strong> Redacción Comercial y Copys con IA (ChatGPT y Plan Provincial PPA).</li>
+              <li><strong>Diapositiva 4:</strong> Del Mundo Físico al Digital (Flyer promocional y Código QR impreso).</li>
+              <li><strong>Diapositiva 5:</strong> ¡Manos a la Obra! (Consigna del TP N.° 3 paso a paso).</li>
+            </ul>
+          </div>
+
+          <div class="class-footer">
+            <a href="/clase3.html" class="btn btn-primary btn-full" style="background: linear-gradient(135deg, #06b6d4, #17e6a3); border-color: rgba(6, 182, 212, 0.5); color: #07080d; font-weight: 700;">
+              <span>🎓 Abrir Diapositivas Clase 3</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <div class="class-teacher-tools">
+              <span>🎙️ Incluye Flyer Interactivo con QR Real, Pregunta Disparadora y Guía del Docente</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Section: Architecture Flow -->
+  <section class="hub-arch-section" id="arquitectura">
+    <div class="container">
+      <div class="section-head text-center">
+        <p class="section-tag">Diagrama de Flujo</p>
+        <h2>¿Cómo funciona la arquitectura de Universo 3D?</h2>
+        <p>El flujo en 3 capas que analizamos en la Clase 1 y que los alumnos replican en su proyecto.</p>
+      </div>
+
+      <div class="arch-cards-flow">
+        <div class="arch-card">
+          <div class="arch-step">1</div>
+          <div class="arch-icon">💻</div>
+          <h3>1. Frontend (Cliente)</h3>
+          <p>La vidriera web que abre el usuario en su navegador. Hecha en HTML5, CSS y JavaScript alojada en Vercel.</p>
+          <span class="arch-subtext">Solicita el catálogo vía HTTP GET</span>
+        </div>
+
+        <div class="arch-arrow">➔</div>
+
+        <div class="arch-card highlight-card">
+          <div class="arch-step">2</div>
+          <div class="arch-icon">☁️</div>
+          <h3>2. Supabase (Backend Cloud)</h3>
+          <p>Servidor 24/7 en la nube con base de datos PostgreSQL. Guarda la tabla <code>productos</code> con precios y stock.</p>
+          <span class="arch-subtext">Responde con los datos en JSON</span>
+        </div>
+
+        <div class="arch-arrow">➔</div>
+
+        <div class="arch-card">
+          <div class="arch-step">3</div>
+          <div class="arch-icon">📲</div>
+          <h3>3. WhatsApp (Cierre de Ventas)</h3>
+          <p>Canal directo con el taller maker (+54 9 3888 202559) que recibe el pedido armado con lista de piezas y entrega.</p>
+          <span class="arch-subtext">Confirmación humana sin comisiones</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Resources & TP 1 -->
+  <section class="hub-tp-section" id="recursos">
+    <div class="container">
+      <div class="tp-box-grid">
+        <div class="tp-info-col">
+          <div class="tp-badge">TP N.° 1 · Práctica en Vivo</div>
+          <h2>Consigna del Trabajo Práctico N.° 1</h2>
+          <p>
+            En la Clase 1, los estudiantes crean su cuenta en Supabase, construyen la tabla <code>productos</code>
+            y cargan los primeros 3 ítems del taller para comprobar la lectura desde el SQL Editor.
+          </p>
+
+          <ol class="tp-steps-list">
+            <li><strong>1. Registro en Supabase:</strong> Crear el proyecto <code>Universo-3D</code>.</li>
+            <li><strong>2. Creación de Tabla:</strong> Definir los campos id, nombre, descripcion, precio, imagen_url, categoria, material y stock.</li>
+            <li><strong>3. Carga inicial:</strong> Insertar 3 piezas reales del taller (Dragón, Maceta Voronoi, Dock MagSafe).</li>
+            <li><strong>4. Credenciales:</strong> Extraer <code>SUPABASE_URL</code> y <code>SUPABASE_ANON_KEY</code>.</li>
+            <li><strong>5. Verificación SQL:</strong> Ejecutar consulta de lectura en el SQL Editor.</li>
+          </ol>
+
+          <div class="tp-actions">
+            <a href="/clase1.html" class="btn btn-primary">
+              <span>Ir a la Diapositiva 6 (Consigna TP)</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="tp-code-col">
+          <div class="code-header">
+            <span class="code-title">script_creacion_tabla.sql</span>
+            <button class="btn btn-small btn-ghost" id="copySqlBtn" title="Copiar código SQL">
+              <span>📋 Copiar SQL</span>
+            </button>
+          </div>
+          <pre class="sql-code" id="sqlSnippet"><code>-- 1. Crear tabla de productos para Universo 3D
+CREATE TABLE productos (
+  id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  descripcion TEXT,
+  precio NUMERIC(10, 2) NOT NULL,
+  imagen_url TEXT,
+  categoria TEXT DEFAULT 'decoracion',
+  material TEXT DEFAULT 'PLA+',
+  stock INT DEFAULT 10,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 2. Cargar 3 productos iniciales del taller
+INSERT INTO productos (nombre, descripcion, precio, imagen_url, material, stock)
+VALUES 
+  ('Dragón Articulado Cristal', 'Impreso en PLA Silk bicolor sin ensamblaje', 499.00, 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe', 'PLA Silk', 12),
+  ('Maceta Geométrica Voronoi', 'Diseño paramétrico con drenaje para suculentas', 320.00, 'https://images.unsplash.com/photo-1545241047-6083a3684587', 'PLA+ Eco', 20),
+  ('Dock Cargador MagSafe', 'Soporte angular ergonómico para smartphone', 360.00, 'https://images.unsplash.com/photo-1584438784894-089d6a62b8fa', 'PETG Mate', 15);
+
+-- 3. Comprobar lectura
+SELECT * FROM productos;</code></pre>
+          <div class="code-footer-tip">
+            💡 Este script se puede ejecutar directamente en el <em>SQL Editor</em> de Supabase.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teacher Shortcuts Guide -->
+  <section class="hub-shortcuts-section">
+    <div class="container">
+      <div class="shortcuts-card">
+        <div class="shortcuts-header">
+          <span class="shortcuts-tag">⌨️ Atajos de Teclado para el Docente</span>
+          <h3>Control rápido durante la proyección en vivo</h3>
+        </div>
+        <div class="shortcuts-grid">
+          <div class="shortcut-item">
+            <kbd>→</kbd> / <kbd>Espacio</kbd>
+            <span>Avanzar diapositiva</span>
+          </div>
+          <div class="shortcut-item">
+            <kbd>←</kbd>
+            <span>Retroceder diapositiva</span>
+          </div>
+          <div class="shortcut-item">
+            <kbd>F</kbd>
+            <span>Pantalla Completa (Proyector)</span>
+          </div>
+          <div class="shortcut-item">
+            <kbd>N</kbd>
+            <span>Mostrar/Ocultar Guía del Docente</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <!-- Institutional Highlight Block in Footer -->
+    <div class="container institutional-footer-banner" id="institucion">
+      <div class="inst-banner-card">
+        <div class="inst-card-icon">🏛️</div>
+        <div class="inst-card-text">
+          <span class="inst-card-tag">Marco Institucional Educativo</span>
+          <h3>Escuela de Educación Técnica N.° 2 “Dr. Horacio Guzmán”</h3>
+          <p class="inst-card-loc">📍 San Pedro de Jujuy, Provincia de Jujuy, Argentina</p>
+          <div class="inst-card-workshop">
+            <span class="w-label">Denominación Oficial del Taller:</span>
+            <strong class="w-name">"Emprendimiento Digital: Creación y Despliegue de Tienda Virtual para Productos 3D"</strong>
+          </div>
+          <div class="inst-card-workshop" style="margin-top: 8px;">
+            <span class="w-label" style="color: #4f8cff;">Espacio Curricular:</span>
+            <strong class="w-name">Prácticas Profesionalizantes II</strong>
+            <span class="w-label" style="margin-left: 12px; color: #17e6a3;">Docente:</span>
+            <strong class="w-name">Prof. Residente Juan Ezequiel Hinojosa</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <a href="#inicio" class="brand">
+          <img src="/img/logo.svg" alt="Universo 3D Logo" width="30" height="30" />
+          <span>Universo <span class="gradient-text">3D</span></span>
+        </a>
+        <p class="footer-desc">
+          Material pedagógico y didáctico desarrollado para los alumnos de la <strong>E.E.T. N.° 2 “Dr. Horacio Guzmán”</strong> en el marco del espacio <strong>Prácticas Profesionalizantes II</strong> dictado por el <strong>Prof. Residente Juan Ezequiel Hinojosa</strong>.
+        </p>
+        <div class="workshop-status">
+          <span class="status-dot"></span>
+          <span>Clases 1, 2 y 3 disponibles · San Pedro de Jujuy</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Enlaces Rápidos</h4>
+        <ul class="footer-links">
+          <li><a href="/clase1.html">🎓 Clase 1: Backend Cloud</a></li>
+          <li><a href="/clase2.html">🎓 Clase 2: Frontend & IA</a></li>
+          <li><a href="/clase3.html">🎓 Clase 3: Despliegue & QR</a></li>
+          <li><a href="https://universo3-owp7mu18p-juan-ad7a.vercel.app/" target="_blank" rel="noopener noreferrer">🌐 Ver Tienda en Vivo (Vercel)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto & Taller</h4>
+        <ul class="footer-contact-info">
+          <li>
+            <span class="contact-icon" aria-hidden="true">📲</span>
+            <div>
+              <strong>WhatsApp del Taller</strong>
+              <a href="https://wa.me/5493888202559" target="_blank" rel="noopener noreferrer">+54 9 3888 202559</a>
+            </div>
+          </li>
+          <li>
+            <span class="contact-icon" aria-hidden="true">📍</span>
+            <div>
+              <strong>Sede del Taller</strong>
+              <p>San Pedro de Jujuy, Jujuy, Argentina</p>
+            </div>
+          </li>
+          <li>
+            <span class="contact-icon" aria-hidden="true">👨‍🏫</span>
+            <div>
+              <strong>Docente a Cargo</strong>
+              <p>Prof. Residente Juan Ezequiel Hinojosa</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="copyright">
+          © 2026 <strong>Escuela de Educación Técnica N.° 2 “Dr. Horacio Guzmán” (San Pedro de Jujuy)</strong> · Espacio Curricular: <em>Prácticas Profesionalizantes II</em> · Docente: <em>Prof. Residente Juan Ezequiel Hinojosa</em>.
+        </p>
+        <p class="footer-craft">
+          Formando el futuro técnico con innovación digital y 3D 🚀
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // Copy SQL snippet functionality
+    const copySqlBtn = document.getElementById("copySqlBtn");
+    const sqlSnippet = document.getElementById("sqlSnippet");
+    const toast = document.getElementById("toast");
+
+    function showToast(msg) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toast.classList.remove("show"), 2500);
+    }
+
+    if (copySqlBtn && sqlSnippet) {
+      copySqlBtn.addEventListener("click", () => {
+        const text = sqlSnippet.innerText.trim();
+        navigator.clipboard.writeText(text).then(() => {
+          showToast("¡Script SQL copiado al portapapeles! ✓");
+          copySqlBtn.innerHTML = "<span>✓ ¡Copiado!</span>";
+          setTimeout(() => {
+            copySqlBtn.innerHTML = "<span>📋 Copiar SQL</span>";
+          }, 2000);
+        }).catch(() => {
+          showToast("Error al copiar. Selecciona manualmente.");
+        });
+      });
+    }
+
+    // Classes Hamburger Menu & Drawer Toggle
+    const classesMenuToggle = document.getElementById("classesMenuToggle");
+    const classesDrawer = document.getElementById("classesDrawer");
+    const classesDrawerClose = document.getElementById("classesDrawerClose");
+    const classesDrawerBackdrop = document.getElementById("classesDrawerBackdrop");
+
+    function openClassesDrawer() {
+      if (!classesDrawer || !classesDrawerBackdrop) return;
+      classesDrawer.classList.add("open");
+      classesDrawerBackdrop.classList.add("open");
+      if (classesMenuToggle) {
+        classesMenuToggle.classList.add("active");
+        classesMenuToggle.setAttribute("aria-expanded", "true");
+      }
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeClassesDrawer() {
+      if (!classesDrawer || !classesDrawerBackdrop) return;
+      classesDrawer.classList.remove("open");
+      classesDrawerBackdrop.classList.remove("open");
+      if (classesMenuToggle) {
+        classesMenuToggle.classList.remove("active");
+        classesMenuToggle.setAttribute("aria-expanded", "false");
+      }
+      document.body.style.overflow = "";
+    }
+
+    if (classesMenuToggle) {
+      classesMenuToggle.addEventListener("click", () => {
+        if (classesDrawer && classesDrawer.classList.contains("open")) {
+          closeClassesDrawer();
+        } else {
+          openClassesDrawer();
+        }
+      });
+    }
+
+    if (classesDrawerClose) {
+      classesDrawerClose.addEventListener("click", closeClassesDrawer);
+    }
+
+    if (classesDrawerBackdrop) {
+      classesDrawerBackdrop.addEventListener("click", closeClassesDrawer);
+    }
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && classesDrawer && classesDrawer.classList.contains("open")) {
+        closeClassesDrawer();
+      }
+    });
+
+    // Close when clicking a link inside drawer
+    if (classesDrawer) {
+      classesDrawer.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          closeClassesDrawer();
+        });
+      });
+    }
+
+    // Header scroll background
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      if (header) {
+        header.classList.toggle("scrolled", window.scrollY > 20);
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>

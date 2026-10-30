@@ -1,0 +1,6 @@
+{
+  "name": "Universo 3D | Taller de Impresión 3D",
+  "description": "Taller de impresión 3D profesional: figuras coleccionables, decoración, prototipos y piezas a medida con materiales premium.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

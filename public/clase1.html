@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clase 1: Arquitectura y Backend Cloud | Universo 3D</title>
+  <link rel="icon" type="image/svg+xml" href="/img/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600;700;800&family=Oxanium:wght@500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #07080d;
+      --bg-card: #0f121d;
+      --surface: #141827;
+      --border: #262c45;
+      --text: #eef1f8;
+      --muted: #9aa2c0;
+      --accent: #4f8cff;
+      --accent-purple: #9d5cff;
+      --accent-emerald: #17e6a3;
+      --accent-amber: #f59e0b;
+      --font-display: "Oxanium", sans-serif;
+      --font-body: "Chivo", sans-serif;
+      --font-code: "Fira Code", monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(79, 140, 255, 0.12), transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(157, 92, 255, 0.10), transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(23, 230, 163, 0.08), transparent 50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Top Bar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      background: rgba(7, 8, 13, 0.85);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+    }
+
+    .badge-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(23, 230, 163, 0.12);
+      border: 1px solid rgba(23, 230, 163, 0.35);
+      color: var(--accent-emerald);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: #1c2236;
+      border-color: var(--accent);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+      border: none;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(79, 140, 255, 0.35);
+    }
+    .btn-accent:hover {
+      box-shadow: 0 6px 20px rgba(79, 140, 255, 0.5);
+    }
+
+    .btn-teacher-notes {
+      border-color: rgba(245, 158, 11, 0.4);
+      background: rgba(245, 158, 11, 0.08);
+      color: var(--accent-amber);
+    }
+    .btn-teacher-notes:hover {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: var(--accent-amber);
+    }
+    .btn-teacher-notes.active {
+      background: var(--accent-amber);
+      color: #000;
+      font-weight: 700;
+    }
+
+    /* Slides Deck Container */
+    .deck-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      padding-top: 64px;
+      padding-bottom: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .slide {
+      position: absolute;
+      width: min(1180px, 94%);
+      max-height: calc(100vh - 160px);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 44px 50px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 50px rgba(79, 140, 255, 0.06);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(40px) scale(0.97);
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+    }
+
+    .slide.previous {
+      transform: translateX(-40px) scale(0.97);
+    }
+
+    /* Slide Header */
+    .slide-header {
+      margin-bottom: 24px;
+    }
+
+    .slide-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--accent-emerald);
+      margin-bottom: 8px;
+    }
+
+    .slide-meta .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .slide-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+    }
+
+    .slide-concept {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-top: 6px;
+      font-weight: 400;
+    }
+
+    /* Slide Content Grid */
+    .slide-body {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+      margin: 10px 0 20px;
+    }
+
+    .slide-body.full-width {
+      grid-template-columns: 1fr;
+    }
+
+    /* Key Points List */
+    .key-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .key-point-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: all 0.25s;
+    }
+
+    .key-point-card:hover {
+      border-color: rgba(79, 140, 255, 0.45);
+      background: #181d30;
+      transform: translateX(4px);
+    }
+
+    .point-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(79, 140, 255, 0.12);
+      border: 1px solid rgba(79, 140, 255, 0.3);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .point-icon.emerald {
+      background: rgba(23, 230, 163, 0.12);
+      border-color: rgba(23, 230, 163, 0.3);
+      color: var(--accent-emerald);
+    }
+
+    .point-icon.purple {
+      background: rgba(157, 92, 255, 0.12);
+      border-color: rgba(157, 92, 255, 0.3);
+      color: var(--accent-purple);
+    }
+
+    .point-icon.amber {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.3);
+      color: var(--accent-amber);
+    }
+
+    .point-content strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .point-content p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* Interactive Visual Boxes */
+    .visual-box {
+      background: #090b12;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Architecture Diagram (Slide 1) */
+    .arch-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .flow-node {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .flow-node:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(79, 140, 255, 0.2);
+    }
+
+    .flow-connector {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--accent-emerald);
+      font-family: var(--font-code);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Client vs Server Diagram (Slide 2) */
+    .restaurant-analogy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .analogy-col {
+      padding: 20px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .analogy-icon {
+      font-size: 2.8rem;
+      margin-bottom: 8px;
+    }
+
+    /* Database Table Simulator (Slide 3) */
+    .db-table-sim {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      font-family: var(--font-code);
+    }
+
+    .db-table-sim th {
+      background: #1c2236;
+      color: var(--accent-emerald);
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .db-table-sim td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(38, 44, 69, 0.5);
+      color: #cad1e8;
+    }
+
+    .db-table-sim tr:hover td {
+      background: rgba(79, 140, 255, 0.08);
+      color: #fff;
+    }
+
+    .badge-type {
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #101422;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      margin-left: 4px;
+    }
+
+    /* Question / Disparadora Card */
+    .question-card {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(157, 92, 255, 0.08));
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      border-radius: 16px;
+      padding: 18px 22px;
+      margin-top: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .question-card:hover {
+      border-color: var(--accent-amber);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+    }
+
+    .question-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .question-header span {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--accent-amber);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .question-toggle {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      padding: 4px 10px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+    }
+
+    .question-answer {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(245, 158, 11, 0.25);
+      font-size: 0.88rem;
+      color: #f1f4ff;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .question-card.open .question-answer {
+      display: block;
+    }
+
+    /* Teacher's Drawer Note */
+    .teacher-notes-panel {
+      background: rgba(15, 18, 29, 0.95);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      border-radius: 18px;
+      padding: 20px 24px;
+      margin-top: 18px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 0.3s ease;
+      display: none;
+    }
+
+    .teacher-notes-panel.visible {
+      display: block;
+    }
+
+    .teacher-notes-panel .note-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--accent-amber);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .teacher-notes-panel p {
+      font-size: 0.96rem;
+      font-style: italic;
+      color: #fefefe;
+      line-height: 1.6;
+    }
+
+    /* Code Block snippet */
+    .code-block {
+      background: #06070a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      color: #9fe2bf;
+      overflow-x: auto;
+      margin-top: 10px;
+      position: relative;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .copy-btn:hover { color: #fff; border-color: var(--accent); }
+
+    /* Hands-on Checkboxes (Slide 6) */
+    .steps-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .step-item:hover {
+      border-color: var(--accent-emerald);
+      background: #181d30;
+    }
+
+    .step-item.completed {
+      border-color: rgba(23, 230, 163, 0.4);
+      background: rgba(23, 230, 163, 0.05);
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #1d2338;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--accent-emerald);
+      flex-shrink: 0;
+    }
+
+    .step-item.completed .step-num {
+      background: var(--accent-emerald);
+      color: #05140e;
+    }
+
+    .step-text strong {
+      display: block;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .step-text span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Navigation Dock */
+    .deck-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 74px;
+      background: rgba(7, 8, 13, 0.92);
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 50;
+    }
+
+    .nav-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-pill {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: all 0.2s;
+    }
+
+    .nav-pill:hover {
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .nav-pill.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 16px rgba(79, 140, 255, 0.4);
+    }
+
+    .nav-arrows {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .key-tip {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-right: 6px;
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .key-tip { display: inline-block; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .slide {
+        padding: 24px 20px;
+        max-height: calc(100vh - 140px);
+      }
+      .slide-body {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .topbar { padding: 0 16px; }
+      .deck-nav { padding: 0 16px; }
+      .nav-pills { overflow-x: auto; max-width: 50%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation & Actions -->
+  <header class="topbar">
+    <div class="brand-group">
+      <div class="brand-badge">
+        <img src="/img/logo.svg" alt="Logo" width="28" height="28" />
+        <span>E.E.T. N.° 2 “Dr. Horacio Guzmán”</span>
+      </div>
+      <span class="badge-tag">San Pedro de Jujuy</span>
+      <span class="badge-tag" style="background: rgba(79, 140, 255, 0.12); color: var(--accent); border-color: rgba(79, 140, 255, 0.35);">Clase 1 · Backend Cloud</span>
+    </div>
+
+    <div class="top-controls">
+      <a href="/" class="btn" title="Volver al Portal de Clases">
+        <span>🏠 Portal</span>
+      </a>
+
+      <a href="/clase2.html" class="btn" style="background: rgba(157, 92, 255, 0.15); color: #c49eff; border-color: rgba(157, 92, 255, 0.4);" title="Ir a la Clase 2">
+        <span>Clase 2</span>
+      </a>
+
+      <a href="/clase3.html" class="btn" style="background: rgba(6, 182, 212, 0.15); color: #67e8f9; border-color: rgba(6, 182, 212, 0.4);" title="Ir a la Clase 3">
+        <span>Clase 3 ►</span>
+      </a>
+
+      <button class="btn btn-teacher-notes" id="toggleNotesBtn" title="Mostrar/Ocultar lo que debe decir el docente">
+        <span>🎙️ Guía Docente</span>
+      </button>
+
+      <a href="https://universo3-owp7mu18p-juan-ad7a.vercel.app/" class="btn btn-accent" target="_blank" rel="noopener noreferrer" title="Abrir la tienda en vivo desplegada en Vercel">
+        <span>🌐 Tienda Vercel</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+
+      <button class="btn" id="fullscreenBtn" title="Pantalla completa para proyector">
+        ⛶ Pantalla Completa
+      </button>
+    </div>
+  </header>
+
+  <!-- Slide Deck -->
+  <main class="deck-container">
+
+    <!-- DIAPOSITIVA 1: Arquitectura de Universo 3D -->
+    <section class="slide active" id="slide-1" data-index="1">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span>E.E.T. N.° 2 “Dr. Horacio Guzmán” (San Pedro de Jujuy)</span>
+          <span class="dot"></span>
+          <span>Taller: "Emprendimiento Digital: Creación y Despliegue de Tienda Virtual para Productos 3D"</span>
+          <span class="dot"></span>
+          <span>Diapositiva 01 / 06</span>
+        </div>
+        <h1 class="slide-title">Arquitectura de "Universo 3D"</h1>
+        <p class="slide-concept">Concepto central: Vista panorámica del flujo de datos del proyecto final.</p>
+      </div>
+
+      <div class="slide-body">
+        <ul class="key-points">
+          <li class="key-point-card">
+            <div class="point-icon">💻</div>
+            <div class="point-content">
+              <strong>Frontend (La Vidriera Interactiva)</strong>
+              <p>Interfaz web en el navegador del usuario: catálogo de filamentos, visualizador 3D, carrito y selector de piezas.</p>
+            </div>
+          </li>
+          <li class="key-point-card">
+            <div class="point-icon emerald">☁️</div>
+            <div class="point-content">
+              <strong>Backend Cloud (Supabase)</strong>
+              <p>Almacén seguro de datos, base de datos relacional PostgreSQL y APIs de alta velocidad disponibles las 24 horas.</p>
+            </div>
+          </li>
+          <li class="key-point-card">
+            <div class="point-icon purple">📲</div>
+            <div class="point-content">
+              <strong>WhatsApp Business (Cierre de Ventas)</strong>
+              <p>Canal directo y sin fricción donde aterriza la orden con el detalle completo de ítems, precio y entrega.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="visual-box">
+          <div class="arch-flow">
+            <div class="flow-node">
+              <span style="font-size:1.5rem">🛒</span>
+              <div>
+                <strong style="color:#fff; font-size:0.9rem; display:block">1. Cliente Navega y Elige</strong>
+                <span style="font-size:0.75rem; color:var(--muted)">HTML5 + CSS + JavaScript</span>
+              </div>
+            </div>
+            <div class="flow-connector">
+              <span>⬇ Solicitud de datos (API REST)</span>
+            </div>
+            <div class="flow-node" style="border-color: rgba(23, 230, 163, 0.45); background: rgba(23, 230, 163, 0.05);">
+              <span style="font-size:1.5rem">⚡</span>
+              <div>
+                <strong style="color:var(--accent-emerald); font-size:0.9rem; display:block">2. Supabase Cloud</strong>
+                <span style="font-size:0.75rem; color:var(--muted)">Tabla 'productos' (Precios, Stock, Fotos)</span>
+              </div>
+            </div>
+            <div class="flow-connector">
+              <span>⬇ Finalizar Pedido con un clic</span>
+            </div>
+            <div class="flow-node" style="border-color: rgba(37, 211, 102, 0.45); background: rgba(37, 211, 102, 0.05);">
+              <span style="font-size:1.5rem">💬</span>
+              <div>
+                <strong style="color:#25d366; font-size:0.9rem; display:block">3. WhatsApp al Taller Maker</strong>
+                <span style="font-size:0.75rem; color:var(--muted)">Notificación instantánea: 3888202559</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher's Speaking Notes -->
+      <div class="teacher-notes-panel">
+        <span class="note-tag">🎙️ Palabras del Docente / Analogía</span>
+        <p>"El cliente navega el catálogo impreso en 3D desde la web; cuando elige un ítem, la web consulta al backend en la nube y finalmente redirige la compra a nuestro WhatsApp con la lista armada."</p>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 2: Modelo Cliente-Servidor -->
+    <section class="slide" id="slide-2" data-index="2">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span>Diapositiva 02 / 06</span>
+          <span class="dot"></span>
+          <span>Fundamentos Web</span>
+        </div>
+        <h1 class="slide-title">Modelo Cliente-Servidor</h1>
+        <p class="slide-concept">Concepto central: ¿Por qué separamos la interfaz del almacenamiento?</p>
+      </div>
+
+      <div class="slide-body">
+        <ul class="key-points">
+          <li class="key-point-card">
+            <div class="point-icon">📱</div>
+            <div class="point-content">
+              <strong>El Cliente (Solicitante)</strong>
+              <p>Es la aplicación o navegador que usa el usuario (Chrome, Safari, celular). Se encarga de mostrar la interfaz gráfica y pedir datos.</p>
+            </div>
+          </li>
+          <li class="key-point-card">
+            <div class="point-icon emerald">🖥️</div>
+            <div class="point-content">
+              <strong>El Servidor (Proveedor)</strong>
+              <p>Una computadora en la nube conectada 24/7 con alta disponibilidad. Recibe peticiones, procesa lógica, valida reglas y devuelve respuestas.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="visual-box">
+          <div class="restaurant-analogy">
+            <div class="analogy-col">
+              <div class="analogy-icon">🍽️</div>
+              <strong style="display:block; color:#fff; font-size:1rem; margin-bottom:4px;">El Cliente</strong>
+              <p style="font-size:0.8rem; color:var(--muted);">El comensal sentado en la mesa consultando la carta y haciendo pedidos.</p>
+            </div>
+            <div class="analogy-col" style="border-color: rgba(23, 230, 163, 0.4);">
+              <div class="analogy-icon">👨‍🍳</div>
+              <strong style="display:block; color:var(--accent-emerald); font-size:1rem; margin-bottom:4px;">El Servidor</strong>
+              <p style="font-size:0.8rem; color:var(--muted);">La cocina que prepara, custodia las recetas y despacha los platos solicitados.</p>
+            </div>
+          </div>
+
+          <!-- Trigger Question -->
+          <div class="question-card" onclick="toggleQuestion(this)">
+            <div class="question-header">
+              <span>❓ Pregunta disparadora para el curso</span>
+              <span class="question-toggle">Ver respuesta</span>
+            </div>
+            <div class="question-answer">
+              <strong>¿Por qué no guardamos la lista de productos dentro de la misma página web del teléfono del usuario?</strong>
+              <p style="margin-top:6px; color:var(--muted);">Porque si modificamos el precio de un dragón articulado o nos quedamos sin filamento PETG, tendríamos que actualizar la aplicación en los teléfonos de miles de usuarios. En el servidor, se cambia una sola vez y todos lo ven al instante.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher-notes-panel">
+        <span class="note-tag">🎙️ Palabras del Docente / Analogía</span>
+        <p>"Es como un restaurante: ustedes son el Cliente sentados en la mesa consultando la carta; la Cocina es el Servidor que prepara y entrega la información solicitada."</p>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 3: Base de Datos Relacional -->
+    <section class="slide" id="slide-3" data-index="3">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span>Diapositiva 03 / 06</span>
+          <span class="dot"></span>
+          <span>Estructura de Datos</span>
+        </div>
+        <h1 class="slide-title">Base de Datos Relacional</h1>
+        <p class="slide-concept">Concepto central: El lugar ordenado y tipado donde guardamos la información.</p>
+      </div>
+
+      <div class="slide-body">
+        <div>
+          <ul class="key-points">
+            <li class="key-point-card">
+              <div class="point-icon">📊</div>
+              <div class="point-content">
+                <strong>Tablas, Filas y Columnas</strong>
+                <p><strong>Columnas:</strong> Atributos del producto (nombre, precio, material).<br /><strong>Filas (Registros):</strong> Cada pieza 3D individual guardada en el taller.</p>
+              </div>
+            </li>
+            <li class="key-point-card">
+              <div class="point-icon emerald">🔒</div>
+              <div class="point-content">
+                <strong>Tipos de Datos y Clave Única (ID)</strong>
+                <p>Texto (nombre), Números decimales (precio), Enteros (stock) y un <code>id</code> irrepetible (Primary Key) para no confundir piezas.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="question-card" onclick="toggleQuestion(this)">
+            <div class="question-header">
+              <span>❓ Pregunta disparadora para el curso</span>
+              <span class="question-toggle">Ver respuesta</span>
+            </div>
+            <div class="question-answer">
+              <strong>Si un precio cambia, ¿dónde nos conviene modificarlo: en 10 páginas HTML distintas o en una sola tabla centralizada?</strong>
+              <p style="margin-top:6px; color:var(--muted);">¡En una sola tabla centralizada! Toda la web se alimenta automáticamente de esa única fuente de verdad (Single Source of Truth).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-box">
+          <p style="font-size:0.75rem; text-transform:uppercase; color:var(--accent-emerald); font-weight:700; margin-bottom:10px;">
+            Vista previa de la tabla: <code style="color:#fff">productos</code>
+          </p>
+          <div style="overflow-x:auto;">
+            <table class="db-table-sim">
+              <thead>
+                <tr>
+                  <th>id <span class="badge-type">int4</span></th>
+                  <th>nombre <span class="badge-type">text</span></th>
+                  <th>precio <span class="badge-type">numeric</span></th>
+                  <th>material <span class="badge-type">text</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Dragón Articulado</td>
+                  <td>$499.00</td>
+                  <td>PLA Silk</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Maceta Voronoi</td>
+                  <td>$320.00</td>
+                  <td>PLA+ Eco</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Soporte Auriculares</td>
+                  <td>$450.00</td>
+                  <td>PETG Pro</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher-notes-panel">
+        <span class="note-tag">🎙️ Palabras del Docente / Analogía</span>
+        <p>"Imaginen una planilla de Excel superpotente y segura en la nube. En la tabla productos definimos exactamente qué datos requiere un ítem de nuestro taller 3D (repuestos, dados braille, soportes)."</p>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 4: API REST -->
+    <section class="slide" id="slide-4" data-index="4">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span>Diapositiva 04 / 06</span>
+          <span class="dot"></span>
+          <span>El Puente de Conexión</span>
+        </div>
+        <h1 class="slide-title">API REST: El Mensajero</h1>
+        <p class="slide-concept">Concepto central: El puente de comunicación entre el Cliente y la Base de Datos.</p>
+      </div>
+
+      <div class="slide-body">
+        <ul class="key-points">
+          <li class="key-point-card">
+            <div class="point-icon">🔌</div>
+            <div class="point-content">
+              <strong>API (Interfaz de Programación de Aplicaciones)</strong>
+              <p>Conjunto de reglas y formatos para que dos sistemas independientes (nuestro JavaScript y Supabase) se entiendan sin saber cómo está programado el otro.</p>
+            </div>
+          </li>
+          <li class="key-point-card">
+            <div class="point-icon purple">📬</div>
+            <div class="point-content">
+              <strong>Métodos HTTP Básicos</strong>
+              <p><code>GET</code> para pedir y leer productos, <code>POST</code> para crear uno nuevo, <code>PUT/PATCH</code> para modificar precio, <code>DELETE</code> para borrar.</p>
+            </div>
+          </li>
+          <li class="key-point-card">
+            <div class="point-icon amber">🔑</div>
+            <div class="point-content">
+              <strong>Credenciales de Conexión</strong>
+              <p><strong>URL del Proyecto:</strong> La dirección de la casa.<br /><strong>Anon Public Key:</strong> La llave autorizada para leer la vidriera.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="visual-box">
+          <div style="text-align:center; padding:10px 0 16px;">
+            <span style="font-size:3rem">🤵</span>
+            <strong style="display:block; color:#fff; font-size:1.1rem; margin-top:4px;">El Mozo del Restaurante</strong>
+          </div>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.5; text-align:center;">
+            "Toma el pedido de la mesa (<code>GET /productos</code>), va a la cocina, trae los datos estructurados en formato JSON y los sirve en la pantalla."
+          </p>
+
+          <div class="code-block">
+            <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+            // Cómo pedimos los datos con JavaScript:<br/>
+            const { data } = await supabase<br/>
+            &nbsp;&nbsp;.from('productos')<br/>
+            &nbsp;&nbsp;.select('*');
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher-notes-panel">
+        <span class="note-tag">🎙️ Palabras del Docente / Analogía</span>
+        <p>"La API es el mozo del restaurante: toma el pedido del cliente ('Tráeme la lista de productos'), va a la cocina (servidor), busca los datos en la heladera (base de datos) y se los sirve a la mesa en formato digital."</p>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 5: ¿Por qué Supabase? -->
+    <section class="slide" id="slide-5" data-index="5">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span>Diapositiva 05 / 06</span>
+          <span class="dot"></span>
+          <span>Nuestra Plataforma Cloud</span>
+        </div>
+        <h1 class="slide-title">¿Por qué Supabase?</h1>
+        <p class="slide-concept">Concepto central: Nuestra plataforma Backend-as-a-Service (BaaS) moderna y open-source.</p>
+      </div>
+
+      <div class="slide-body">
+        <ul class="key-points">
+          <li class="key-point-card">
+            <div class="point-icon emerald">🐘</div>
+            <div class="point-content">
+              <strong>Motor PostgreSQL en la Nube</strong>
+              <p>La base de datos relacional más robusta y respetada del mundo, sin necesidad de instalar programas pesados en las computadoras del colegio.</p>
+            </div>
+          </li>
+          <li class="key-point-card">
+            <div class="point-icon">⚡</div>
+            <div class="point-content">
+              <strong>Generación Automática de APIs REST</strong>
+              <p>Apenas creas una tabla en Supabase, la API REST ya está creada y funcionando automáticamente sin escribir código de backend.</p>
+            </div>
+          </li>
+          <li class="key-point-card">
+            <div class="point-icon purple">🖥️</div>
+            <div class="point-content">
+              <strong>Table Editor Visual e Intuitivo</strong>
+              <p>Panel web muy parecido a una hoja de cálculo para cargar fotos, editar precios y filtrar productos con unos pocos clics.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="visual-box" style="display:flex; flex-direction:column; justify-content:center; gap:16px;">
+          <div style="background:#131828; border:1px solid var(--border); border-radius:14px; padding:18px;">
+            <strong style="color:var(--accent-emerald); font-size:0.95rem; display:block; margin-bottom:6px;">🚀 Desarrollo Ágil Maker</strong>
+            <p style="font-size:0.85rem; color:var(--muted); line-height:1.5;">
+              En vez de pasar 3 semanas configurando Linux, servidores Apache o puertos, con Supabase tenemos el backend listo en <strong>5 minutos</strong> para enfocarnos en fabricar piezas 3D.
+            </p>
+          </div>
+
+          <div style="background:#131828; border:1px solid var(--border); border-radius:14px; padding:18px;">
+            <strong style="color:var(--accent); font-size:0.95rem; display:block; margin-bottom:6px;">🛡️ Políticas de Seguridad (RLS)</strong>
+            <p style="font-size:0.85rem; color:var(--muted); line-height:1.5;">
+              Permite que cualquier cliente lea los productos de la vidriera, pero solo nosotros con clave de taller podamos modificarlos o eliminarlos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher-notes-panel">
+        <span class="note-tag">🎙️ Palabras del Docente</span>
+        <p>"Supabase nos da el servidor, la base de datos relacional y la API REST ya listas en cuestión de minutos, permitiéndonos enfocar en nuestro catálogo 3D sin configurar servidores físicos."</p>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 6: ¡Manos a la Obra! (Consigna TP N.° 1) -->
+    <section class="slide" id="slide-6" data-index="6">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span>Diapositiva 06 / 06</span>
+          <span class="dot"></span>
+          <span>Práctica Guiada en Vivo</span>
+        </div>
+        <h1 class="slide-title">¡Manos a la Obra! (TP N.° 1)</h1>
+        <p class="slide-concept">Consigna paso a paso: Creación del backend y tabla de productos para Universo 3D.</p>
+      </div>
+
+      <div class="slide-body">
+        <ul class="steps-checklist" id="tpChecklist">
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <strong>Registro y Creación de Proyecto</strong>
+              <span>Crear cuenta en supabase.com e iniciar el proyecto con nombre <code>Universo-3D</code>.</span>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <strong>Crear la Tabla 'productos'</strong>
+              <span>Definir campos: <code>id</code>, <code>nombre</code>, <code>descripcion</code>, <code>precio</code>, <code>image_url</code>, <code>material</code> y <code>stock</code>.</span>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <strong>Carga Inicial de 3 Ítems del Taller</strong>
+              <span>Ingresar al menos 3 piezas 3D reales con fotos y precios representativos.</span>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num">4</div>
+            <div class="step-text">
+              <strong>Extraer Credenciales API</strong>
+              <span>Copiar en el archivo el <code>SUPABASE_URL</code> y <code>SUPABASE_ANON_KEY</code> desde Project Settings -> API.</span>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num">5</div>
+            <div class="step-text">
+              <strong>Comprobación en el SQL Editor</strong>
+              <span>Ejecutar la consulta <code>SELECT * FROM productos;</code> y verificar los resultados devueltos.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="visual-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:0.75rem; text-transform:uppercase; color:var(--accent-emerald); font-weight:700;">Script SQL rápido para la clase</span>
+            <span style="font-size:0.7rem; color:var(--muted)">Opcional para SQL Editor</span>
+          </div>
+          <div class="code-block" style="font-size:0.76rem;">
+            <button class="copy-btn" onclick="copyCode(this)">Copiar SQL</button>
+CREATE TABLE productos (<br/>
+&nbsp;&nbsp;id BIGSERIAL PRIMARY KEY,<br/>
+&nbsp;&nbsp;nombre TEXT NOT NULL,<br/>
+&nbsp;&nbsp;descripcion TEXT,<br/>
+&nbsp;&nbsp;precio NUMERIC(10,2) NOT NULL,<br/>
+&nbsp;&nbsp;image_url TEXT,<br/>
+&nbsp;&nbsp;material TEXT DEFAULT 'PLA+',<br/>
+&nbsp;&nbsp;stock INT DEFAULT 10<br/>
+);<br/><br/>
+-- Habilitar lectura pública (RLS)<br/>
+ALTER TABLE productos ENABLE ROW LEVEL SECURITY;<br/>
+CREATE POLICY "Lectura pública" ON productos FOR SELECT USING (true);
+          </div>
+
+          <div style="margin-top:14px; text-align:center;">
+            <a href="https://supabase.com/dashboard" target="_blank" rel="noopener noreferrer" class="btn btn-accent" style="width:100%; justify-content:center;">
+              <span>Abrir Supabase Dashboard ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher-notes-panel">
+        <span class="note-tag">🎙️ Palabras del Docente</span>
+        <p>"Abran sus navegadores en supabase.com. Vamos a ir paso a paso creando el proyecto juntos; al terminar, cada uno tendrá su base de datos activa lista para conectarse a la tienda que acabamos de ver."</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation Deck -->
+  <footer class="deck-nav">
+    <div class="nav-pills">
+      <button class="nav-pill active" onclick="goToSlide(1)">1</button>
+      <button class="nav-pill" onclick="goToSlide(2)">2</button>
+      <button class="nav-pill" onclick="goToSlide(3)">3</button>
+      <button class="nav-pill" onclick="goToSlide(4)">4</button>
+      <button class="nav-pill" onclick="goToSlide(5)">5</button>
+      <button class="nav-pill" onclick="goToSlide(6)">6</button>
+    </div>
+
+    <div class="nav-arrows">
+      <span class="key-tip">Usa ◄ ► o Espacio para cambiar</span>
+      <button class="btn" id="prevBtn" onclick="changeSlide(-1)">◄ Anterior</button>
+      <button class="btn btn-accent" id="nextBtn" onclick="changeSlide(1)">Siguiente ►</button>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 6;
+
+    const slides = document.querySelectorAll(".slide");
+    const pills = document.querySelectorAll(".nav-pill");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const toggleNotesBtn = document.getElementById("toggleNotesBtn");
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+
+    let notesVisible = false;
+
+    function goToSlide(n) {
+      if (n < 1 || n > totalSlides) return;
+      currentSlide = n;
+
+      slides.forEach((slide, idx) => {
+        const slideIndex = idx + 1;
+        slide.classList.remove("active", "previous");
+        if (slideIndex === currentSlide) {
+          slide.classList.add("active");
+        } else if (slideIndex < currentSlide) {
+          slide.classList.add("previous");
+        }
+      });
+
+      pills.forEach((pill, idx) => {
+        pill.classList.toggle("active", idx + 1 === currentSlide);
+      });
+
+      prevBtn.disabled = currentSlide === 1;
+      nextBtn.textContent = currentSlide === totalSlides ? "¡Comenzar TP! 🚀" : "Siguiente ►";
+    }
+
+    function changeSlide(direction) {
+      goToSlide(currentSlide + direction);
+    }
+
+    // Toggle teacher's drawer notes
+    toggleNotesBtn.addEventListener("click", () => {
+      notesVisible = !notesVisible;
+      toggleNotesBtn.classList.toggle("active", notesVisible);
+      document.querySelectorAll(".teacher-notes-panel").forEach((panel) => {
+        panel.classList.toggle("visible", notesVisible);
+      });
+    });
+
+    // Toggle trigger question answers
+    function toggleQuestion(card) {
+      card.classList.toggle("open");
+      const toggleText = card.querySelector(".question-toggle");
+      if (toggleText) {
+        toggleText.textContent = card.classList.contains("open") ? "Ocultar" : "Ver respuesta";
+      }
+    }
+
+    // Toggle TP Checklist items
+    function toggleStep(item) {
+      item.classList.toggle("completed");
+    }
+
+    // Copy code button
+    function copyCode(btn) {
+      const parent = btn.parentElement;
+      const text = parent.innerText.replace("Copiar SQL", "").replace("Copiar", "").trim();
+      navigator.clipboard.writeText(text);
+      btn.textContent = "¡Copiado! ✓";
+      setTimeout(() => { btn.textContent = "Copiar"; }, 2000);
+    }
+
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") {
+        e.preventDefault();
+        changeSlide(1);
+      } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+        e.preventDefault();
+        changeSlide(-1);
+      } else if (e.key.toLowerCase() === "n") {
+        toggleNotesBtn.click();
+      } else if (e.key.toLowerCase() === "f") {
+        toggleFullscreen();
+      }
+    });
+
+    // Fullscreen toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+        fullscreenBtn.textContent = "⛶ Salir de Pantalla";
+      } else {
+        document.exitFullscreen().catch(() => {});
+        fullscreenBtn.textContent = "⛶ Pantalla Completa";
+      }
+    }
+    fullscreenBtn.addEventListener("click", toggleFullscreen);
+
+    goToSlide(1);
+  </script>
+</body>
+</html>
