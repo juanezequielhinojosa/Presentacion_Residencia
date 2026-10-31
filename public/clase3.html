@@ -487,6 +487,12 @@
       gap: 14px;
     }
 
+    .key-points.key-points-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
     .key-point-card {
       display: flex;
       align-items: flex-start;
@@ -764,10 +770,12 @@
       margin: 4px 0;
     }
 
-    .flyer-qr-svg {
+    .flyer-qr-img {
       width: 140px;
       height: 140px;
       display: block;
+      object-fit: contain;
+      border-radius: 4px;
     }
 
     .flyer-qr-caption {
@@ -785,6 +793,37 @@
       display: flex;
       align-items: center;
       gap: 6px;
+    }
+
+    .flyer-download-block {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(6, 182, 212, 0.3);
+    }
+
+    .flyer-download-preview {
+      width: 150px;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid rgba(6, 182, 212, 0.35);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .flyer-download-preview:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(6, 182, 212, 0.35);
+    }
+
+    .flyer-download-btn {
+      width: 100%;
+      justify-content: center;
     }
 
     /* Stacked Layout for Slide 5: 4 Cards on top, Prompt / Guides below */
@@ -1126,6 +1165,9 @@
       .steps-grid-4 {
         grid-template-columns: repeat(2, 1fr);
       }
+      .key-points.key-points-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .output-samples {
         grid-template-columns: 1fr;
       }
@@ -1179,6 +1221,9 @@
         display: none;
       }
       .steps-grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .key-points.key-points-grid-3 {
         grid-template-columns: 1fr;
       }
     }
@@ -1434,8 +1479,8 @@
         <p class="slide-concept">Concepto central: Creación de la identidad y el discurso de ventas del emprendimiento de impresión 3D.</p>
       </div>
 
-      <div class="slide-body">
-        <ul class="key-points">
+      <div class="slide-body-stacked">
+        <ul class="key-points key-points-grid-3">
           <li class="key-point-card">
             <div class="point-icon emerald">🎯</div>
             <div class="point-content">
@@ -1544,16 +1589,19 @@ Genera:
           <p class="flyer-sub">Escaneá el código con tu celular para ver nuestro catálogo en vivo y hacer tu pedido directo al taller.</p>
 
           <div class="flyer-qr-wrapper">
-            <!-- SVG QR Code real de alta definición apuntando a Vercel -->
-            <svg class="flyer-qr-svg" viewBox="0 0 29 29" shape-rendering="crispEdges">
-              <path fill="#ffffff" d="M0 0h29v29H0z"/>
-              <path fill="#07080d" d="M0 0h7v7H0zm8 0h1v1H8zm3 0h1v1h-1zm2 0h1v1h-1zm2 0h2v1h-2zm3 0h1v1h-1zm3 0h7v7h-7zM1 1v5h5V1zm21 0v5h5V1zm-13 1h1v1H9zm2 0h2v1h-2zm3 0h2v1h-2zm-9 1h1v1H2zm2 0h1v1H4zm3 0h1v1H7zm15 0h1v1h-1zm2 0h1v1h-1zm-14 1h1v1h-1zm3 0h1v1h-1zm1 0h1v1h-1zm8 0h1v1h-1zm-12 1h1v1h-1zm2 0h1v1h-1zm5 0h2v1h-2zm5 0h1v1h-1zm-16 1h1v1H4zm3 0h1v1H7zm14 0h1v1h-1zm3 0h1v1h-1zm-16 1h1v1H8zm3 0h1v1h-1zm2 0h2v1h-2zm3 0h1v1h-1zm3 0h1v1h-1zm-19 1h7v1H0zm8 0h2v1H8zm3 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h2v1h-2zm3 0h1v1h-1zm-16 1h1v1H5zm6 0h1v1h-1zm3 0h2v1h-2zm5 0h1v1h-1zm2 0h2v1h-2zm-15 1h2v1H6zm4 0h1v1h-1zm2 0h1v1h-1zm3 0h1v1h-1zm4 0h1v1h-1zm3 0h1v1h-1zm-16 1h1v1H6zm4 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm3 0h1v1h-1zm3 0h2v1h-2zm-17 1h1v1H3zm2 0h1v1H5zm5 0h2v1h-2zm5 0h2v1h-2zm3 0h1v1h-1zm2 0h1v1h-1zm-18 1h1v1H2zm3 0h1v1H5zm3 0h1v1H8zm2 0h2v1h-2zm3 0h1v1h-1zm2 0h1v1h-1zm3 0h1v1h-1zm2 0h2v1h-2zm-18 1h1v1H2zm2 0h1v1H4zm5 0h2v1H9zm5 0h1v1h-1zm2 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm-18 1h1v1H3zm3 0h1v1H6zm4 0h2v1h-2zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm-19 1h7v7H0zm8 0h1v1H8zm2 0h1v1h-1zm3 0h1v1h-1zm2 0h1v1h-1zm2 0h1v1h-1zm2 0h2v1h-2zm2 0h1v1h-1zm1 0h1v1h-1zm-18 1h1v5H1zm20 0h1v1h-1zm3 0h1v1h-1zm-15 1h1v1H7zm11 0h1v1h-1zm3 0h1v1h-1zm-19 1h1v1H2zm2 0h1v1H4zm14 0h1v1h-1zm2 0h2v1h-2zm-17 1h1v1H3zm2 0h1v1H5zm14 0h1v1h-1zm-16 1h5v1H1zm7 0h1v1H8zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h1v1h-1zm3 0h2v1h-2z"/>
-            </svg>
+            <img src="/img/qr.png" alt="Código QR de Universo 3D" class="flyer-qr-img" width="140" height="140" />
             <span class="flyer-qr-caption">universo3d.vercel.app</span>
           </div>
 
           <div class="flyer-cta">
             <span>📷 Escaneá con la cámara de tu celular</span>
+          </div>
+
+          <div class="flyer-download-block">
+            <img src="/img/universo3d_flyer_qr_funcional.png" alt="Flyer publicitario de Universo 3D con código QR" class="flyer-download-preview" loading="lazy" />
+            <a href="/img/universo3d_flyer_qr_funcional.png" download="universo3d_flyer_qr_funcional.png" class="btn-download-pulse flyer-download-btn" title="Descargar el flyer publicitario en PNG">
+              <span>⬇️ Descargar flyer (PNG)</span>
+            </a>
           </div>
         </div>
       </div>
