@@ -21,8 +21,22 @@
         <span>Universo <span class="gradient-text">3D</span> <span class="brand-hub-tag">Clases</span></span>
       </a>
 
-      <nav class="nav-links" id="navLinks">
-        <!-- Enlaces internos ocultos según solicitud (secciones conservadas en la página) -->
+      <nav class="nav-links" id="navLinks" aria-label="Navegación rápida de Clases">
+        <a href="#inicio" class="nav-item-home" title="Ir al Inicio del Portal">
+          <span>🏠 Inicio</span>
+        </a>
+        <a href="/clase1.html" class="nav-class-pill pill-c1" title="Clase 1: Arquitectura & Supabase Cloud">
+          <span class="pill-badge">C1</span>
+          <span>Clase 1 · Backend</span>
+        </a>
+        <a href="/clase2.html" class="nav-class-pill pill-c2" title="Clase 2: Frontend con IA & WhatsApp">
+          <span class="pill-badge purple">C2</span>
+          <span>Clase 2 · Frontend & IA</span>
+        </a>
+        <a href="/clase3.html" class="nav-class-pill pill-c3" title="Clase 3: Despliegue Cloud & Marketing">
+          <span class="pill-badge cyan">C3</span>
+          <span>Clase 3 · Despliegue & QR</span>
+        </a>
       </nav>
 
       <div class="header-actions">
@@ -65,7 +79,6 @@
           <span class="drawer-status-pill">● Disponible</span>
         </div>
         <div class="drawer-class-content">
-          <div class="drawer-class-icon blue">☁️</div>
           <div class="drawer-class-texts">
             <strong>Arquitectura & Supabase Cloud</strong>
             <span>Bases de datos relacionales (PostgreSQL), modelo cliente-servidor y TP N.° 1</span>
@@ -81,7 +94,6 @@
           <span class="drawer-status-pill purple">● Disponible</span>
         </div>
         <div class="drawer-class-content">
-          <div class="drawer-class-icon purple">✨</div>
           <div class="drawer-class-texts">
             <strong>Frontend con IA & WhatsApp</strong>
             <span>Google AI Studio + React/Vite, Prompt Maestro, catálogo en vivo y TP N.° 2</span>
@@ -97,7 +109,6 @@
           <span class="drawer-status-pill cyan">● Disponible</span>
         </div>
         <div class="drawer-class-content">
-          <div class="drawer-class-icon cyan">🚀</div>
           <div class="drawer-class-texts">
             <strong>Despliegue Cloud & Marketing Digital</strong>
             <span>GitHub + Vercel, copys con ChatGPT y Flyer con Código QR para la ExpoTécnica</span>
@@ -154,9 +165,7 @@
       </div>
 
       <p class="hub-hero-sub">
-        Capacitación técnica estructurada en <strong>3 clases prácticas</strong> dictada para la <strong>Escuela de Educación Técnica N.° 2 “Dr. Horacio Guzmán” (San Pedro de Jujuy)</strong>:
-        desde la arquitectura del sistema y base de datos relacional en <strong>Supabase (PostgreSQL)</strong>,
-        hasta el frontend interactivo, el checkout automatizado por <strong>WhatsApp</strong> y el despliegue global en <strong>Vercel</strong>.
+        Capacitación práctica en <strong>3 clases</strong>: arquitectura cloud en <strong>Supabase</strong> (PostgreSQL), tienda interactiva asistida por <strong>IA</strong>, pedidos por <strong>WhatsApp</strong> y despliegue global en <strong>Vercel</strong>.
       </p>
 
       <div class="hub-hero-actions">
@@ -272,10 +281,15 @@
           </div>
 
           <div class="class-footer">
-            <a href="/clase1.html" class="btn btn-primary btn-full">
-              <span>🎓 Abrir Diapositivas Clase 1</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
+            <div class="class-actions-row">
+              <a href="/clase1.html" class="btn btn-primary" style="flex:1;">
+                <span>🎓 Abrir Diapositivas</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="/assets/aistudio/TRABAJO_PRACTICO_N_1_7d64e2bb.pdf" download="TRABAJO_PRACTICO_N_1_Supabase_Universo3D.pdf" class="btn btn-download-card" title="Descargar Trabajo Práctico 1 en PDF">
+                <span>📥 Descargar TP 1 (PDF)</span>
+              </a>
+            </div>
             <div class="class-teacher-tools">
               <span>🎙️ Incluye Guía del Docente, Preguntas Disparadoras y Modo Proyector</span>
             </div>
@@ -315,10 +329,15 @@
           </div>
 
           <div class="class-footer">
-            <a href="/clase2.html" class="btn btn-primary btn-full" style="background: linear-gradient(135deg, #9d5cff, #7928ca); border-color: rgba(157, 92, 255, 0.5);">
-              <span>🎓 Abrir Diapositivas Clase 2</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
+            <div class="class-actions-row">
+              <a href="/clase2.html" class="btn btn-primary" style="flex:1; background: linear-gradient(135deg, #9d5cff, #7928ca); border-color: rgba(157, 92, 255, 0.5);">
+                <span>🎓 Abrir Diapositivas</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="/assets/aistudio/TRABAJO_PRACTICO_N_2_81c5c728.pdf" download="TRABAJO_PRACTICO_N_2_Frontend_IA_WhatsApp.pdf" class="btn btn-download-card purple" title="Descargar Trabajo Práctico 2 en PDF">
+                <span>📥 Descargar TP 2 (PDF)</span>
+              </a>
+            </div>
             <div class="class-teacher-tools">
               <span>🎙️ Incluye Prompt Maestro, Pregunta Disparadora y Guía del Docente</span>
             </div>
@@ -358,10 +377,15 @@
           </div>
 
           <div class="class-footer">
-            <a href="/clase3.html" class="btn btn-primary btn-full" style="background: linear-gradient(135deg, #06b6d4, #17e6a3); border-color: rgba(6, 182, 212, 0.5); color: #07080d; font-weight: 700;">
-              <span>🎓 Abrir Diapositivas Clase 3</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
+            <div class="class-actions-row">
+              <a href="/clase3.html" class="btn btn-primary" style="flex:1; background: linear-gradient(135deg, #06b6d4, #17e6a3); border-color: rgba(6, 182, 212, 0.5); color: #07080d; font-weight: 700;">
+                <span>🎓 Abrir Diapositivas</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="/assets/aistudio/TRABAJO_PRACTICO_N_3_050da768.pdf" download="TRABAJO_PRACTICO_N_3_Despliegue_Marketing_QR.pdf" class="btn btn-download-card cyan" title="Descargar Trabajo Práctico 3 en PDF">
+                <span>📥 Descargar TP 3 (PDF)</span>
+              </a>
+            </div>
             <div class="class-teacher-tools">
               <span>🎙️ Incluye Flyer Interactivo con QR Real, Pregunta Disparadora y Guía del Docente</span>
             </div>
@@ -415,69 +439,7 @@
     </div>
   </section>
 
-  <!-- Section: Resources & TP 1 -->
-  <section class="hub-tp-section" id="recursos">
-    <div class="container">
-      <div class="tp-box-grid">
-        <div class="tp-info-col">
-          <div class="tp-badge">TP N.° 1 · Práctica en Vivo</div>
-          <h2>Consigna del Trabajo Práctico N.° 1</h2>
-          <p>
-            En la Clase 1, los estudiantes crean su cuenta en Supabase, construyen la tabla <code>productos</code>
-            y cargan los primeros 3 ítems del taller para comprobar la lectura desde el SQL Editor.
-          </p>
 
-          <ol class="tp-steps-list">
-            <li><strong>1. Registro en Supabase:</strong> Crear el proyecto <code>Universo-3D</code>.</li>
-            <li><strong>2. Creación de Tabla:</strong> Definir los campos id, nombre, descripcion, precio, imagen_url, categoria, material y stock.</li>
-            <li><strong>3. Carga inicial:</strong> Insertar 3 piezas reales del taller (Dragón, Maceta Voronoi, Dock MagSafe).</li>
-            <li><strong>4. Credenciales:</strong> Extraer <code>SUPABASE_URL</code> y <code>SUPABASE_ANON_KEY</code>.</li>
-            <li><strong>5. Verificación SQL:</strong> Ejecutar consulta de lectura en el SQL Editor.</li>
-          </ol>
-
-          <div class="tp-actions">
-            <a href="/clase1.html" class="btn btn-primary">
-              <span>Ir a la Diapositiva 6 (Consigna TP)</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="tp-code-col">
-          <div class="code-header">
-            <span class="code-title">script_creacion_tabla.sql</span>
-            <button class="btn btn-small btn-ghost" id="copySqlBtn" title="Copiar código SQL">
-              <span>📋 Copiar SQL</span>
-            </button>
-          </div>
-          <pre class="sql-code" id="sqlSnippet"><code>-- 1. Crear tabla de productos para Universo 3D
-CREATE TABLE productos (
-  id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-  nombre TEXT NOT NULL,
-  descripcion TEXT,
-  precio NUMERIC(10, 2) NOT NULL,
-  imagen_url TEXT,
-  categoria TEXT DEFAULT 'decoracion',
-  material TEXT DEFAULT 'PLA+',
-  stock INT DEFAULT 10,
-  created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- 2. Cargar 3 productos iniciales del taller
-INSERT INTO productos (nombre, descripcion, precio, imagen_url, material, stock)
-VALUES 
-  ('Dragón Articulado Cristal', 'Impreso en PLA Silk bicolor sin ensamblaje', 499.00, 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe', 'PLA Silk', 12),
-  ('Maceta Geométrica Voronoi', 'Diseño paramétrico con drenaje para suculentas', 320.00, 'https://images.unsplash.com/photo-1545241047-6083a3684587', 'PLA+ Eco', 20),
-  ('Dock Cargador MagSafe', 'Soporte angular ergonómico para smartphone', 360.00, 'https://images.unsplash.com/photo-1584438784894-089d6a62b8fa', 'PETG Mate', 15);
-
--- 3. Comprobar lectura
-SELECT * FROM productos;</code></pre>
-          <div class="code-footer-tip">
-            💡 Este script se puede ejecutar directamente en el <em>SQL Editor</em> de Supabase.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Teacher Shortcuts Guide -->
   <section class="hub-shortcuts-section">
@@ -601,34 +563,6 @@ SELECT * FROM productos;</code></pre>
   <div class="toast" id="toast"></div>
 
   <script>
-    // Copy SQL snippet functionality
-    const copySqlBtn = document.getElementById("copySqlBtn");
-    const sqlSnippet = document.getElementById("sqlSnippet");
-    const toast = document.getElementById("toast");
-
-    function showToast(msg) {
-      if (!toast) return;
-      toast.textContent = msg;
-      toast.classList.add("show");
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(() => toast.classList.remove("show"), 2500);
-    }
-
-    if (copySqlBtn && sqlSnippet) {
-      copySqlBtn.addEventListener("click", () => {
-        const text = sqlSnippet.innerText.trim();
-        navigator.clipboard.writeText(text).then(() => {
-          showToast("¡Script SQL copiado al portapapeles! ✓");
-          copySqlBtn.innerHTML = "<span>✓ ¡Copiado!</span>";
-          setTimeout(() => {
-            copySqlBtn.innerHTML = "<span>📋 Copiar SQL</span>";
-          }, 2000);
-        }).catch(() => {
-          showToast("Error al copiar. Selecciona manualmente.");
-        });
-      });
-    }
-
     // Classes Hamburger Menu & Drawer Toggle
     const classesMenuToggle = document.getElementById("classesMenuToggle");
     const classesDrawer = document.getElementById("classesDrawer");
