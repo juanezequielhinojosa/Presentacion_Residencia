@@ -381,15 +381,6 @@
       border-color: #9d5cff;
     }
 
-    .btn.btn-disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      pointer-events: none;
-      filter: grayscale(0.8);
-      box-shadow: none;
-      transform: none;
-    }
-
     @media (max-width: 680px) {
       .download-tp-banner {
         flex-direction: column;
@@ -1455,7 +1446,7 @@
             <div class="point-icon">⚡</div>
             <div class="point-content">
               <strong>Filtros Instantáneos en el Navegador</strong>
-              <p>Búsqueda en tiempo real por texto, material (PLA, PETG, Resina) y categoría sin recargar la página ni saturar el servidor.</p>
+              <p>Búsqueda en tiempo real por texto y material (PLA, PETG, Resina) sin recargar la página ni saturar el servidor.</p>
             </div>
           </li>
           <li class="key-point-card">
@@ -1651,10 +1642,10 @@ Requisitos:
           <strong>Trabajo Práctico N.° 2: Frontend Asistido con IA e Integración con WhatsApp</strong>
           <p>Prompt maestro, checklist de integración de catálogo, persistencia y autoevaluación.</p>
         </div>
-        <button type="button" class="btn btn-download-pulse btn-disabled" disabled aria-disabled="true" aria-label="Descargar TP 2 (disponible en la Clase 2)" title="Disponible cuando se dicte la Clase 2">
+        <a href="/assets/aistudio/TRABAJO_PRACTICO_N_2_81c5c728.pdf?v=2" download="TRABAJO_PRACTICO_N°2.pdf" class="btn btn-download-pulse" title="Descargar Trabajo Práctico N.° 2 en PDF">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           <span>Descargar TP 2 (PDF)</span>
-        </button>
+        </a>
       </div>
 
       <!-- Teacher's Speaking Notes -->
@@ -1677,9 +1668,9 @@ Requisitos:
     </div>
 
     <div class="nav-arrows">
-      <button type="button" class="btn btn-download-nav btn-disabled" disabled aria-disabled="true" aria-label="Descargar TP 2 (disponible en la Clase 2)" title="Disponible cuando se dicte la Clase 2">
+      <a href="/assets/aistudio/TRABAJO_PRACTICO_N_2_81c5c728.pdf?v=2" download="TRABAJO_PRACTICO_N°2.pdf" class="btn btn-download-nav" title="Descargar Trabajo Práctico 2 en PDF">
         <span>📥 Descargar TP 2 (PDF)</span>
-      </button>
+      </a>
       <span class="key-tip">Usa <b>Espacio</b> o <b>← →</b></span>
       <button class="btn" id="prevBtn" onclick="changeSlide(-1)">◄ Anterior</button>
       <button class="btn btn-accent" id="nextBtn" onclick="changeSlide(1)">Siguiente ►</button>
